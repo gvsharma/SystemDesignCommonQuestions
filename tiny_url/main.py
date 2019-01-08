@@ -55,6 +55,10 @@ tinyurl = codec.encode("http://calvinchankf.com")
 print(tinyurl)
 longurl = codec.decode(tinyurl)
 print(longurl)
+tinyurl = codec.encode("https://www.linkedin.com/in/calvinchankf/")
+print(tinyurl)
+longurl = codec.decode(tinyurl)
+print(longurl)
 
 
 nn = codec.numToBase62(0)

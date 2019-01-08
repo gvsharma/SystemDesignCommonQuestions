@@ -50,7 +50,11 @@ Redirect 301 or 302?
 ---
 301 means the url will be used permanently which is sematically correct. But if we use 301, search engines like Google will directly navigate users to the URL you are referencing so you can't get the actual number of clicks/view from google. Therefore, we should use 302
 
+
+[My Minimal Implementation](./main.py)
+
 References
 ---
 - http://cn.soulmachine.me/2017-04-10-how-to-design-tinyurl/
 - https://www.geeksforgeeks.org/how-to-design-a-tiny-url-or-url-shortener/
+- https://leetcode.com/problems/encode-and-decode-tinyurl/
