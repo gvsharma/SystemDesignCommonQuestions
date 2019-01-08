@@ -75,3 +75,8 @@ Potential Optimizations
 - add a load balancer to handle tremendous number of read/write requests
 
 ![](./advanced.png)
+
+References
+---
+- https://github.com/donnemartin/system-design-primer/tree/master/solutions/system_design/pastebin
+- https://leetcode.com/discuss/interview-question/system-design/124804/Design-Pastebin
