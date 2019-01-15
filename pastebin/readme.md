@@ -24,10 +24,9 @@ Scope(questions to ask interviewers)
 - users are anonymous? yes
 - page view analytics? not for now
 - expect how many writes/month? 10 milion
-- expect how many writes/month? 100 milion
+- expect how many reads/month? 100 milion
 - expect to serve how long? > 3 years
 - size per paste? <10000 charactors ~= 10KB
-
 
 Calculation (according to the above scope)
 ---
@@ -48,9 +47,9 @@ For simplexity, we can, firstly, store the paste content in our MongoDB, and the
 ```sql
 CREATE TABLE IF NOT EXISTS pastes (
     "id" PRIMARY KEY SERIAL, // it depends
-	  "key" TEXT NOT NULL UNIQUE,
+	"key" TEXT NOT NULL UNIQUE,
     "object_id" TEXT NOT NULL UNIQUE, // it depends
-	  "created_timestamp" TIMESTAMP WITH TIME ZONE DEFAULT now(),
+	"created_timestamp" TIMESTAMP WITH TIME ZONE DEFAULT now(),
     "expiry_timestamp" TIMESTAMP WITH TIME ZONE,
 );
 ```
