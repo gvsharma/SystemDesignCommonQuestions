@@ -5,7 +5,7 @@ When Redis is used as a cache, often it is handy to let it automatically evict o
 LRU Cache(Least Recently Used Cache)
 ---
 `get(key)`
-- Get the value(an object) of the key if the key exists in the cache, otherwise return -1
+- Get the value (an object) of the key if the key exists in the cache, otherwise return -1
 
 `put(key, value)`
 - Set the value if the key is not already present
@@ -31,7 +31,7 @@ cache.get(4);       // returns 4
 
 **Thought Process:**
 1. use a hashtable to store the key & value to archieve put & get Time = O(1)
-2. however, we want to prioritize the items by its recency.
+2. however, we want to prioritize the items by its **recency**
     1. we need a sorted array(sorted by recency), i.e. arr = arr[i]+arr[i+1]+target
     2. but how to find the key value in the sorted array? what if we store the key & index such that we can loop up from the arr easier. the look up(from arr) complexity is O(1)
 3. but wait, if we remove any item from the array, we need to update the hashtable, the set time complexity will be O(n)
@@ -44,7 +44,38 @@ cache.get(4);       // returns 4
     ```
 7. then both operations(put & get) will be O(1) time 🎉🎉🎉
 
-[Here is my implementation in JS](./lru-cache.js)
+8. [Here is my implementation in JS](./lru-cache.js)
 
 LFU Cache(Least Frequently Used Cache)
 ---
+`get(key)`
+- Get the value (an object) of the key if the key exists in the cache, otherwise return -1
+
+`put(key, value)` 
+- Set the value if the key is not already present
+- Update the value if they key is present
+- When the cache reaches its capacity, it should invalidate the least frequently used item before inserting a new item
+
+Example:
+```
+LFUCache cache = new LFUCache( 2 /* capacity */ );
+cache.put(1, 1);
+cache.put(2, 2);
+cache.get(1);       // returns 1
+cache.put(3, 3);    // evicts key 2
+cache.get(2);       // returns -1 (not found)
+cache.get(3);       // returns 3.
+cache.put(4, 4);    // evicts key 1.
+cache.get(1);       // returns -1 (not found)
+cache.get(3);       // returns 3
+cache.get(4);       // returns 4
+```
+
+**Initail Thought**
+1. use a hashtable to store the key & value to archieve put & get Time = O(1)
+2. however, we want to prioritize the items by its **frequency**.
+3. what if we use a min-heap? such that the least frequently used key&value is sorted to the root of the [Binary Heap](https://en.wikipedia.org/wiki/Binary_heap). The operation time complexity is O(logn)
+
+4. implementation
+    - [Here is my implementation using an array of doubly linked list](./lfu-cache.js)
+    - [Here is my implementation using a heap](./lfu-cache.js)
