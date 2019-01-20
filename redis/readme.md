@@ -83,3 +83,8 @@ cache.get(4);       // returns 4
 4. implementation
     - [Here is my implementation using an array of doubly linked list](./lfu-cache.js)
     - [Here is my implementation using a heap](./lfu-cache.js)
+
+Reference
+---
+- https://leetcode.com/problems/lru-cache/
+- https://leetcode.com/problems/lfu-cache/
