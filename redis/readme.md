@@ -71,7 +71,7 @@ cache.get(3);       // returns 3
 cache.get(4);       // returns 4
 ```
 
-**Initail Thought**
+**Thought Process**
 1. use a hashtable to store the key & value to archieve put & get Time = O(1)
 2. however, we want to prioritize the items by its **frequency**.
 3. the easiest way is to use an array of doubly linked list
