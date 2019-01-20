@@ -2,6 +2,7 @@ package main
 
 import (
 	"container/heap"
+	"fmt"
 	"time"
 )
 
@@ -67,49 +68,50 @@ type Entry struct {
 // PQ implements heap.Interface and holds entries.
 type PQ []*Entry
 
-func (pq PQ) Len() int { return len(pq) }
+func (this PQ) Len() int { return len(this) }
 
-func (pq PQ) Less(i, j int) bool {
-	if pq[i].frequence == pq[j].frequence {
-		return pq[i].date.Before(pq[j].date)
+func (this PQ) Less(i, j int) bool {
+	if this[i].frequence == this[j].frequence {
+		return this[i].date.Before(this[j].date)
 	}
 
-	return pq[i].frequence < pq[j].frequence
+	return this[i].frequence < this[j].frequence
 }
 
-func (pq PQ) Swap(i, j int) {
-	pq[i], pq[j] = pq[j], pq[i]
-	pq[i].index = i
-	pq[j].index = j
+func (this PQ) Swap(i, j int) {
+	this[i], this[j] = this[j], this[i]
+	this[i].index = i
+	this[j].index = j
 }
 
-func (pq *PQ) Push(x interface{}) {
-	n := len(*pq)
+func (this *PQ) Push(x interface{}) {
+	n := len(*this)
 	entry := x.(*Entry)
 	entry.index = n
 	entry.date = time.Now()
-	*pq = append(*pq, entry)
+	*this = append(*this, entry)
 }
 
-func (pq *PQ) Pop() interface{} {
-	old := *pq
+func (this *PQ) Pop() interface{} {
+	old := *this
 	n := len(old)
 	entry := old[n-1]
 	entry.index = -1 // for safety
-	*pq = old[0 : n-1]
+	*this = old[0 : n-1]
 	return entry
 }
 
 // update modifies the priority of an entry in the queue.
-func (pq *PQ) update(entry *Entry) {
+func (this *PQ) update(entry *Entry) {
 	entry.frequence++
 	entry.date = time.Now()
-	heap.Fix(pq, entry.index)
+	heap.Fix(this, entry.index)
 }
 
 func main() {
 	c := Constructor(2)
 	c.Put(1, 1)
-	// c.Put(2, 2)
-	// c.Put(3, 3)
+	c.Put(2, 2)
+	c.Put(3, 3)
+	fmt.Println(c.Get(2))
 }

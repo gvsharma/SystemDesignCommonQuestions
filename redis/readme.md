@@ -30,7 +30,7 @@ cache.get(4);       // returns 4
 
 
 **Thought Process:**
-1. use a hashtable to store the key & value to archieve put & get Time = O(1)
+1. use a hashtable to store the key & value to achieve put & get Time = O(1)
 2. however, we want to prioritize the items by its **recency**
     1. we need a sorted array(sorted by recency), i.e. arr = arr[i]+arr[i+1]+target
     2. but how to find the key value in the sorted array? what if we store the key & index such that we can loop up from the arr easier. the look up(from arr) complexity is O(1)
