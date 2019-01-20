@@ -75,6 +75,7 @@ cache.get(4);       // returns 4
 1. use a hashtable to store the key & value to archieve put & get Time = O(1)
 2. however, we want to prioritize the items by its **frequency**.
 3. what if we use a min-heap? such that the least frequently used key&value is sorted to the root of the [Binary Heap](https://en.wikipedia.org/wiki/Binary_heap). The operation time complexity is O(logn)
+4. if we want to make it O(1), we can use another doubly linked list instead of a heap. But then it will be a 2D doubly linked list, it is too hard to implement.
 
 4. implementation
     - [Here is my implementation using an array of doubly linked list](./lfu-cache.js)
